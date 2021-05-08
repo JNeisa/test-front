@@ -1,0 +1,189 @@
+%header-ccf{
+    height: 100px;
+    background-color: #ffffff;
+    display: flex;
+}
+
+%main-section{
+    width: 100%;
+    height: 310px;
+    background-color: #f2f2f2;
+    display: flex;
+}
+
+%bigcircle-btn{
+    /*style for Big Circle*/
+    width: 42px;
+    height: 42px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.15);
+    border: 0;
+    border-radius: 67px;
+    background-image: linear-gradient(-58deg, #ffffff 0%, #f1f1f1 100%);
+    margin: 29px 17px 29px 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.icon-btn{
+        position: relative;
+        &::after{
+            background-size: contain;
+            content: "";
+            position: absolute;
+        }
+    }
+}
+
+%bigcircle-btn:active{
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.nav-ccf{
+    @extend %header-ccf;
+    justify-content: space-between;
+    width: 1440px;
+    margin: auto;
+
+    .home-logo-ccf{
+        margin: 27px 50px 14px 151px;
+    }
+
+    .main-btns{
+        @extend %header-ccf;
+        width: 200px;
+
+        .home-btn{
+            @extend %bigcircle-btn;
+            &::after{
+                background: url('../images/home.svg') no-repeat;
+                width: 30px;
+                height: 27px;
+            }
+        }
+
+        .search-btn{
+            @extend %bigcircle-btn;
+            &::after{
+                background: url('../images/search.svg') no-repeat;
+                width: 26px;
+                height: 26px;
+            }
+        }
+    }
+
+    .menu-nav{
+        @extend %header-ccf;
+        width: 555px;
+
+        .big-btn{
+            /* Style for "Bg" */
+            border-radius: 30px;
+            border: 0;
+            background-color: #ffffff;
+            margin: 32px 12px 33px 0px;
+            padding: 8px 16px;
+            cursor: pointer;
+            color: #0695c9;
+            font-family: "Roboto";
+            font-size: 16px;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: normal;
+            line-height: normal;
+            text-align: left;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &:hover{
+                box-shadow: 7px 7px 7px rgba(178, 178, 178, 0.5);
+                background-image: linear-gradient(to top, #2a637d 0%, #167ea7 19%, #0c8dbe 34%, #0596cb 80%, #0399d0 100%);
+                color:#ffffff;
+            }
+        }
+
+        .down-icon{
+            margin-left: 8px;
+        }
+    }
+
+    .social-media{
+        @extend %header-ccf;
+        width: 185px;
+        padding-right: 152px;
+        justify-content: flex-end;
+
+        .social-media-btn{
+            @extend %bigcircle-btn;
+            text-decoration: none;
+            margin: 29px 0px 29px 17px;
+        }
+
+        .media-icon {color: #a0a0a0}
+    }
+}
+
+.main-section{
+    @extend %main-section;
+    justify-content: center;
+
+    .display-section{
+        @extend %main-section;
+        max-width: 1440px;
+        align-items: center;
+        position: relative;
+
+        h1{
+            width: 365px;
+            height: 75px;
+            text-shadow: 1px 1px 3px rgba(178, 178, 178, 0.5);
+            color: #174f63;
+            font-family: "Roboto";
+            font-size: 64px;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: normal;
+            line-height: normal;
+            text-align: left;
+            margin-left: 150px;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .main-img{
+            align-self: flex-end;
+            margin-left: 460px;
+            position: absolute;
+            z-index: 0;
+        }
+    }
+}
+
+.nav-sect{
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+
+    .second-nav{
+        width: 1290px;
+        padding-top: 37px;
+        padding-left: 150px;
+
+        a{
+            height: 27px;
+            color: #9f9f9f;
+            font-family: "Roboto";
+            font-size: 18px;
+            font-weight: 400;
+            font-style: normal;
+            letter-spacing: normal;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        :focus{
+            color: #f87617;
+        }
+    }
+}
