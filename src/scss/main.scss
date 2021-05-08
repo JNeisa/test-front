@@ -1,10 +1,16 @@
+%main-section{
+    width: 1440px;
+    margin: 0px auto;
+    display: flex;
+}
+
 %header-ccf{
     height: 100px;
     background-color: #ffffff;
     display: flex;
 }
 
-%main-section{
+%banner-section{
     width: 100%;
     height: 310px;
     background-color: #f2f2f2;
@@ -39,10 +45,9 @@
 }
 
 .nav-ccf{
-    @extend %header-ccf;
+    @extend %main-section;
     justify-content: space-between;
-    width: 1440px;
-    margin: auto;
+    height: 100px;
 
     .home-logo-ccf{
         margin: 27px 50px 14px 151px;
@@ -123,12 +128,12 @@
     }
 }
 
-.main-section{
-    @extend %main-section;
+.banner-section{
+    @extend %banner-section;
     justify-content: center;
 
     .display-section{
-        @extend %main-section;
+        @extend %banner-section;
         max-width: 1440px;
         align-items: center;
         position: relative;
@@ -143,8 +148,6 @@
             font-weight: 700;
             font-style: normal;
             letter-spacing: normal;
-            line-height: normal;
-            text-align: left;
             margin-left: 150px;
             position: absolute;
             z-index: 1;
@@ -160,15 +163,13 @@
 }
 
 .nav-sect{
-    width: 100%;
+    @extend %main-section;
     height: 64px;
-    display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 
-    .second-nav{
-        width: 1290px;
+    .page-nav{
         padding-top: 37px;
-        padding-left: 150px;
+        margin-left: 150px;
 
         a{
             height: 27px;
