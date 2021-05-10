@@ -316,7 +316,7 @@
         display: block;
         text-align: center;
 
-        img{
+        .center-img{
             border-radius: 50%;
             box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.2);
             margin-bottom: 40px;
@@ -325,7 +325,7 @@
         .card-info{
             padding: 0px 10px;
 
-            h4{
+            .center-name{
                 @extend %txt;
                 color: #0394ca;
                 font-size: 20px;
@@ -334,14 +334,14 @@
                 margin-bottom: 30px
             }
 
-            h5{
+            .subtitle{
                 @extend %txt;
                 color: #174f63;
                 font-size: 17px;
                 font-weight: 700;
             }
 
-            p{
+            .sub-info{
                 @extend %txt;
                 font-size: 17px;
                 font-weight: 400;
