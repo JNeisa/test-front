@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camara de comercio</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
 </head>
@@ -30,8 +30,8 @@
         </div>
     </header>
 
-    <section class="banner-section">
-        <div class="display-section">
+    <section class="banner-section" id="banner-sect">
+        <div class="display-section" id="display-sect">
             <h1>Contáctenos</h1>
             <img src="images/main-img.svg" class="main-img" alt="">
         </div>
@@ -45,5 +45,56 @@
     </section>
 
     <script src="/js/home.js" type="module"></script>
+
+    <section class="info-sect" id="info-sect">
+        <div class="form-info">
+            <h2>A través de esta página podrás enviar tus comentarios <span>o solicitar información a la Camara de Comercio de Facatativa</span></h2>
+        </div>
+        <div class="contact-form" id="contact-form">
+            <h3>Los campos marcados con (<abbr title="required">*</abbr>) son obligatorios.</h3>
+            <form action="#" class="contactus-form" id="contactus-form">
+                <div class="form-sect">
+                    <div class="input-group">
+                        <label for="username" class="labels">Nombre <abbr title="required">*</abbr></label><br>
+                        <input type="text" class="form-input" name="username" id="username" required><br>
+                        <p class="required-text">El campo es obligatorio.</p>
+                    </div>
+                    <div>
+                        <label for="userid" class="labels">Cédula <abbr title="required">*</abbr></label><br>
+                        <input type="text" class="form-input" name="userid" id="userid" required><br>
+                        <p class="required-text">El campo es obligatorio.</p>
+                    </div>
+                </div><br>
+
+                <label for="affair" class="labels">Asunto <abbr title="required">*</abbr></label><br>
+                <select name="affair" id="affair" class="form-select" required>
+                    <option hidden>-- Seleccione una opción --</option>
+                    <option value="opt1">Opción 1</option>
+                    <option value="opt2">Opción 2</option>
+                    <option value="opt3">Opción 3</option>
+                </select><br>
+                <p class="required-text">El campo es obligatorio.</p><br>
+
+                <div class="form-sect">
+                    <div class="input-group">
+                        <label for="userphone" class="labels">Teléfono <abbr title="required">*</abbr></label><br>
+                        <input type="text" class="form-input" name="userphonr" id="userphone" required><br>
+                        <p class="required-text">El campo es obligatorio.</p>
+                    </div>
+                    <div>
+                        <label for="email" class="labels">Correo electrónico <abbr title="required">*</abbr></label><br>
+                        <input type="text" class="form-input" name="email" id="email" required><br>
+                        <p class="required-text">El campo es obligatorio.</p>
+                    </div>
+                </div><br>
+
+                <label for="msg" class="labels">Mensaje <abbr title="required">*</abbr></label><br>
+                <textarea name="msg" id="msg" cols="30" rows="5" class="form-txt" required></textarea>
+                <p class="required-text">El campo es obligatorio.</p><br>
+            </form>
+
+            <button class="submit-btn" form="contactus-form">Enviar<img src="../images/submit.svg" class="submit-icon"></button>
+        </div>
+    </section>
 </body>
 </html>
