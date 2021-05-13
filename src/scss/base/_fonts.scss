@@ -1,0 +1,23 @@
+$base-weight: 100;
+//colors
+$black: #000000;
+$purple: #174f63;
+$grey: #9f9f9f;
+$orange: #f87617;
+$red: #ff0000;
+$light-blue: #0394ca;
+
+//roboto-bold -> $f-weight: 7
+//roboto-normal -> $f-weight: 4
+@mixin roboto($font-color, $f-size, $f-weight){
+    margin: 0;
+    font-family: "Roboto";
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: normal;
+    text-align: left;
+    font-weight: $base-weight*$f-weight;
+    text-decoration: none;
+    color: $font-color;
+    font-size: $f-size
+}

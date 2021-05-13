@@ -1,0 +1,70 @@
+@mixin bigcircle-btn($icon-width, $icon-height, $icon-url){
+    width: 42px;
+    height: 42px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.15);
+    border: 0;
+    border-radius: 67px;
+    background-image: linear-gradient(-58deg, #ffffff 0%, #f1f1f1 100%);
+    margin: 29px 17px 29px 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:active{
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    &.icon-btn{
+        position: relative;
+        &::after{
+            background: url($icon-url) no-repeat;
+            width: $icon-width;
+            height: $icon-height;
+            background-size: contain;
+            content: "";
+            position: absolute;
+        }
+    }
+}
+
+%big-btn {
+    border-radius: 30px;
+    border: 0;
+    background-color: #ffffff;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #0695c9;
+    font-family: "Roboto";
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: normal;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:hover{
+        box-shadow: 7px 7px 7px rgba(178, 178, 178, 0.5);
+        background-image: linear-gradient(to top, #2a637d 0%, #167ea7 19%, #0c8dbe 34%, #0596cb 80%, #0399d0 100%);
+        color:#ffffff;
+        margin: 32px 6px 33px 6px;
+    }
+}
+
+%submit-btn{
+    height: 46px;
+    box-shadow: 7px 7px 7px rgba(178, 178, 178, 0.5);
+    border: 0;
+    border-radius: 25px;
+    background-image: linear-gradient(to top, #bc4a16 0%, #fe7b17 100%);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 0px 22px;
+    display: flex;
+    align-items: center;
+        &:active{
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+}

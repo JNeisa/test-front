@@ -1,300 +1,180 @@
-%main-section{
-    width: 1440px;
-    margin: 0px auto;
-    display: flex;
+@import "base/fonts";
+@import "components/buttons";
+@import "components/images";
+@import "layout/layout";
+
+body {
+    margin: 0px;
 }
 
-%header-ccf{
-    height: 100px;
-    background-color: #ffffff;
-    display: flex;
-}
+.header-ccf {
+    @include main-section(100px, space-between);
 
-%txt{
-    margin: 0;
-    font-family: "Roboto";
-    font-style: normal;
-    letter-spacing: normal;
-    line-height: normal;
-    text-align: left;
-}
+    .home-logo-ccf {
+        width: 340px;
 
-%banner-section{
-    width: 100%;
-    height: 310px;
-    background-color: #f2f2f2;
-    display: flex;
-}
-
-%bigcircle-btn{
-    /*style for Big Circle*/
-    width: 42px;
-    height: 42px;
-    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.15);
-    border: 0;
-    border-radius: 67px;
-    background-image: linear-gradient(-58deg, #ffffff 0%, #f1f1f1 100%);
-    margin: 29px 17px 29px 0px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &.icon-btn{
-        position: relative;
-        &::after{
-            background-size: contain;
-            content: "";
-            position: absolute;
+        .ccf-logo {
+            @extend %ccf-logo;
         }
     }
-}
 
-%bigcircle-btn:active{
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.nav-ccf{
-    @extend %main-section;
-    justify-content: space-between;
-    height: 100px;
-
-    .home-logo-ccf{
-        margin: 27px 50px 14px 151px;
-    }
-
-    .main-btns{
-        @extend %header-ccf;
+    .main-btns {
         width: 200px;
+        display: flex;
 
-        .home-btn{
-            @extend %bigcircle-btn;
-            &::after{
-                background: url('../images/home.svg') no-repeat;
-                width: 30px;
-                height: 27px;
-            }
+        .home-btn {
+            @include bigcircle-btn(30px, 27px, "../images/home.svg");
         }
 
-        .search-btn{
-            @extend %bigcircle-btn;
-            &::after{
-                background: url('../images/search.svg') no-repeat;
-                width: 26px;
-                height: 26px;
-            }
+        .search-btn {
+            @include bigcircle-btn(26px, 26px, "../images/search.svg");
         }
     }
 
-    .menu-nav{
-        @extend %header-ccf;
+    .menu-nav {
         width: 555px;
+        display: flex;
+        justify-content: space-between;
 
-        .big-btn{
-            @extend %txt;
-            /* Style for "Bg" */
-            border-radius: 30px;
-            border: 0;
-            background-color: #ffffff;
-            margin: 32px 12px 33px 0px;
-            padding: 8px 16px;
-            cursor: pointer;
-            color: #0695c9;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            &:hover{
-                box-shadow: 7px 7px 7px rgba(178, 178, 178, 0.5);
-                background-image: linear-gradient(to top, #2a637d 0%, #167ea7 19%, #0c8dbe 34%, #0596cb 80%, #0399d0 100%);
-                color:#ffffff;
-            }
+        .nav-btn {
+            @extend %big-btn;
 
-            .down-icon{
+            .down-icon {
                 margin-left: 8px;
             }
         }
     }
 
-    .social-media{
-        @extend %header-ccf;
+    .social-media {
         width: 185px;
         padding-right: 152px;
+        display: flex;
         justify-content: flex-end;
 
-        .social-media-btn{
-            @extend %bigcircle-btn;
+        .social-media-btn {
+            @include bigcircle-btn(0, 0, "#");
             text-decoration: none;
             margin: 29px 0px 29px 17px;
         }
 
-        .media-icon {color: #a0a0a0}
+        .media-icon {
+            color: #a0a0a0;
+        }
     }
 }
 
-.banner-section{
+.banner-section {
     @extend %banner-section;
-    justify-content: center;
 
-    .display-section{
+    .display-section {
         @extend %banner-section;
         max-width: 1440px;
+        margin: 0px auto;
         align-items: center;
         position: relative;
 
-        h1{
-            @extend %txt;
-            width: 365px;
-            height: 75px;
+        h1 {
+            @include roboto($purple, 64px, 7);
             text-shadow: 1px 1px 3px rgba(178, 178, 178, 0.5);
-            color: #174f63;
-            font-size: 64px;
-            font-weight: 700;
             margin-left: 150px;
             position: absolute;
             z-index: 1;
         }
 
-        .main-img{
-            align-self: flex-end;
-            margin-left: 460px;
-            position: absolute;
-            z-index: 0;
+        .main-img {
+            @extend %main-image;
         }
     }
 }
 
-.nav-sect{
-    @extend %main-section;
-    justify-content: flex-start;
-    height: 64px;
+.nav-sect {
+    @include main-section(64px, flex-start);
 
-    .page-nav{
+    .page-nav {
         padding-top: 37px;
         margin-left: 150px;
 
-        a{
-            @extend %txt;
-            height: 27px;
-            color: #9f9f9f;
-            font-size: 18px;
-            font-weight: 400;
-            text-decoration: none;
+        a {
+            @include roboto($grey, 18px, 4);
         }
 
-        :focus{
-            color: #f87617;
+        :focus {
+            color: $orange;
         }
     }
 }
 
-.info-sect{
-    @extend %main-section;
-    justify-content: center;
-    height: 725px;
+.info-sect {
+    @include main-section(725px, center);
     margin-bottom: 50px;
 
-    .form-info{
+    .form-info {
         width: 610px;
         display: flex;
         justify-content: flex-end;
 
-        h2{
-            @extend %txt;
+        h2 {
+            @include roboto($purple, 36px, 4);
             width: 422px;
-            color: #174f63;
-            font-size: 36px;
-            font-weight: 400;
             text-align: right;
             margin-top: 108px;
 
-            span{
-                font-weight: 300;
+            span {
+                font-weight: $base-weight * 3;
             }
         }
     }
 
-    .contact-form{
+    .contact-form {
         width: 750px;
         padding-left: 80px;
 
-        %form-input{
-            width: 182px;
-            border-radius: 8px;
-            border: 1px solid #979797;
-            margin: 4px 0px 8px 0px;
-        }
-
-        h3{
-            @extend %txt;
-            color: #174f63;
-            font-size: 18px;
-            font-weight: 900;
+        h3 {
+            @include roboto($purple, 18px, 7);
             margin: 122px 0px 30px 0px;
         }
 
-        abbr{
-            color: #ff0000;
+        abbr {
+            color: $red;
             text-decoration: none;
         }
 
-        .form-sect{
+        .form-sect {
             display: flex;
             justify-content: flex-start;
             height: 80px;
 
-            .input-group{
+            .input-group {
                 margin-right: 30px;
             }
         }
 
-        .labels{
-            @extend %txt;
-            color: #000000;
-            font-size: 16px;
-            font-weight: 700;
+        .labels {
+            @include roboto($black, 16px, 7);
         }
 
-        .required-text{
-            @extend %txt;
-            color: #ff0000;
-            font-size: 10px;
-            font-weight: 400;
+        .required-text {
+            @include roboto($red, 10px, 4);
         }
 
-        .form-input{
-            @extend %form-input;
-            height: 25px;
+        .form-input {
+            @include form-input(25px);
         }
 
-        .form-select{
-            @extend %form-input;
+        .form-select {
+            @include form-input(30px);
             width: 220px;
-            height: 30px;
         }
 
-        .form-txt{
-            @extend %form-input;
+        .form-txt {
+            @include form-input(118px);
             width: 512px;
-            height: 118px;
         }
 
-        .submit-btn{
-            @extend %txt;
-            height: 46px;
-            box-shadow: 7px 7px 7px rgba(178, 178, 178, 0.5);
-            border: 0;
-            border-radius: 25px;
-            background-image: linear-gradient(to top, #bc4a16 0%, #fe7b17 100%);
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: 500;
-            padding: 0px 22px;
-            display: flex;
-            align-items: center;
+        .submit-btn {
+            @extend %submit-btn;
 
-            .submit-icon{
+            .submit-icon {
                 width: 8px;
                 height: 14px;
                 margin-left: 18px;
@@ -304,48 +184,24 @@
     }
 }
 
-.centers-info{
-    @extend %main-section;
-    height: 630px;
-    justify-content: center;
+.centers-info {
+    @include main-section(630px, center);
 
-    .card{
-        width: 238px;
-        height: 600px;
-        margin: 15px 17px;
-        display: block;
-        text-align: center;
-
-        .center-img{
-            border-radius: 50%;
-            box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
+    .card {
+        @extend %card;
+        
+        .center-name {
+            @include roboto($light-blue, 20px, 7);
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .card-info{
-            padding: 0px 10px;
+        .subtitle {
+            @include roboto($purple, 17px, 7);
+        }
 
-            .center-name{
-                @extend %txt;
-                color: #0394ca;
-                font-size: 20px;
-                font-weight: 700;
-                text-align: center;
-                margin-bottom: 30px
-            }
-
-            .subtitle{
-                @extend %txt;
-                color: #174f63;
-                font-size: 17px;
-                font-weight: 700;
-            }
-
-            .sub-info{
-                @extend %txt;
-                font-size: 17px;
-                font-weight: 400;
-            }
+        .sub-info {
+            @include roboto($purple, 17px, 4);
         }
     }
 }
