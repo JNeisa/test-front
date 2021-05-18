@@ -1,7 +1,10 @@
 @import "base/fonts";
 @import "components/buttons";
 @import "components/images";
+@import "layout/bannner";
+@import "layout/cards";
 @import "layout/layout";
+@import "base/medias";
 
 body {
     margin: 0px;
@@ -9,12 +12,24 @@ body {
 
 .header-ccf {
     @include main-section(100px, space-between);
+    @include xs() {
+        width: 411px;
+        height: 60px;
+    }
 
     .home-logo-ccf {
         width: 340px;
 
         .ccf-logo {
-            @extend %ccf-logo;
+            @include ccf-logo;
+        }
+        //mobile
+        @include xs() {
+            width: 148px;
+
+            .ccf-logo {
+                @include ccf-logo-xs;
+            }
         }
     }
 
@@ -29,6 +44,18 @@ body {
         .search-btn {
             @include bigcircle-btn(26px, 26px, "../images/search.svg");
         }
+        //mobile
+        @include xs() {
+            width: 203px;
+
+            .home-btn {
+                @include bigcircle-btn-xs(22px, 22px, "../images/home.svg");
+            }
+
+            .search-btn {
+                @include bigcircle-btn-xs(22px, 22px, "../images/search.svg");
+            }
+        }
     }
 
     .menu-nav {
@@ -42,6 +69,10 @@ body {
             .down-icon {
                 margin-left: 8px;
             }
+        }
+        //mobile
+        @include xs() {
+            display: none;
         }
     }
 
@@ -60,29 +91,73 @@ body {
         .media-icon {
             color: #a0a0a0;
         }
+        //mobile
+        @include xs() {
+            display: none;
+        }
+    }
+
+    .hamburger-menu {
+        display: none;
+        //mobile
+        @include xs() {
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .hamburger-icon {
+                margin-right: 20px;
+                color: $light-blue;
+            }
+        }
     }
 }
 
 .banner-section {
-    @extend %banner-section;
+    @include banner-section(310px);
 
     .display-section {
-        @extend %banner-section;
-        max-width: 1440px;
-        margin: 0px auto;
-        align-items: center;
-        position: relative;
+        @include display-section(1440px);
 
-        h1 {
+        .banner-title {
             @include roboto($purple, 64px, 7);
             text-shadow: 1px 1px 3px rgba(178, 178, 178, 0.5);
             margin-left: 150px;
-            position: absolute;
             z-index: 1;
+            position: absolute;
         }
 
         .main-img {
             @extend %main-image;
+        }
+
+        .main-img-xs {
+            display: none;
+        }
+    }
+
+    @include xs() {
+        @include banner-section(166px);
+
+        .display-section {
+            @include display-section(100%);
+
+            .banner-title {
+                @include roboto($purple, 30px, 7);
+                margin-left: 20px;
+            }
+
+            .main-img {
+                display: none;
+            }
+
+            .main-img-xs {
+                display: block;
+                position: absolute;
+                right: 0;
+                z-index: 0;
+            }
         }
     }
 }
@@ -102,10 +177,24 @@ body {
             color: $orange;
         }
     }
+
+    @include xs(){
+        @include main-section(43px, flex-start);
+        width: 100%;
+
+        .page-nav{
+            padding-top: 16px;
+            margin-left: 16px;
+
+            a {
+                @include roboto($grey, 14px, 4);
+            }
+        }
+    }
 }
 
 .info-sect {
-    @include main-section(725px, center);
+    @include main-section(725px, space-between);
     margin-bottom: 50px;
 
     .form-info {
@@ -127,7 +216,6 @@ body {
 
     .contact-form {
         width: 750px;
-        padding-left: 80px;
 
         h3 {
             @include roboto($purple, 18px, 7);
@@ -142,11 +230,15 @@ body {
         .form-sect {
             display: flex;
             justify-content: flex-start;
-            height: 80px;
+            height: 90px;
 
             .input-group {
                 margin-right: 30px;
             }
+        }
+
+        .form-group{
+            height: 90px;
         }
 
         .labels {
@@ -182,14 +274,57 @@ body {
             }
         }
     }
+
+    @include xs(){
+        @include main-section(1090px, center);
+        width: 100%;
+        display: block;
+
+        .form-info{
+            width: 100%;
+            justify-content: center;
+
+            h2{
+                @include roboto($purple, 28px, 4);
+                margin: 35px 17px;
+                text-align: center;
+            }
+        }
+
+        .contact-form{
+            width: 377px;
+            margin: 0px auto;
+
+            h3{
+                margin: 7px 0px 30px 0px;
+            }
+
+            .form-sect{
+                display: block;
+                height: 172px;
+            }
+
+            .required-text{
+                margin-bottom: 14px;
+            }
+
+            .form-txt{
+                width: 375px;
+            }
+
+            .submit-btn{
+                margin: 0px auto;
+            }
+        }
+    }
 }
 
 .centers-info {
     @include main-section(630px, center);
 
     .card {
-        @extend %card;
-        
+        @include card;
+
         .center-name {
             @include roboto($light-blue, 20px, 7);
             text-align: center;
@@ -202,6 +337,28 @@ body {
 
         .sub-info {
             @include roboto($purple, 17px, 4);
+        }
+    }
+
+    @include xs(){
+        @include main-section(900px, center);
+        width: 100%;
+        display: block;
+
+        .card {
+            @include card-xs;
+            
+            .center-name{
+                @include roboto($light-blue, 18px, 7);
+            }
+
+            .subtitle {
+                @include roboto($purple, 14px, 7);
+            }
+    
+            .sub-info {
+                @include roboto($purple, 14px, 4);
+            }
         }
     }
 }

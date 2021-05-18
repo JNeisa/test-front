@@ -1,12 +1,11 @@
-%ccf-logo {
+@mixin ccf-logo {
     width: 139px;
     height: 59px;
     margin: 27px 50px 14px 151px;
 }
 
-%main-image {
-    align-self: flex-end;
-    margin-left: 460px;
-    position: absolute;
-    z-index: 0;
+@mixin ccf-logo-xs {
+    width: 95px;
+    height: 40px;
+    margin: 10px 20px;
 }

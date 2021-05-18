@@ -1,0 +1,33 @@
+@mixin card {
+    width: 238px;
+    height: 600px;
+    margin: 15px 17px;
+    display: block;
+    text-align: center;
+
+    .center-img {
+        border-radius: 50%;
+        box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.2);
+        margin-bottom: 40px;
+    }
+
+    .card-info {
+        padding: 0px 10px;
+    }
+}
+
+@mixin card-xs {
+    width: 377px;
+    height: 175px;
+    display: flex;
+
+    .center-img{
+        width: 97px;
+        height: 97px;
+        box-shadow: none;
+    }
+
+    .card-info{
+        padding: 0px 12px;
+    }
+}

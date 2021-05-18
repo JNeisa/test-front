@@ -20,18 +20,13 @@ function setSass(cb) {
   src('src/scss/**/*.scss')
   .pipe(sass({style: 'expanded'}))
   .pipe(dest('dist/css'))
-  .pipe(browserSync.reload({
-    stream: true
-  }));
+  .pipe(browserSync.stream())
   cb();
 }
 
 function setHtml(cb) {
   src('src/*.html')
   .pipe(dest('dist'))
-  .pipe(browserSync.reload({
-    stream: true
-  }));
   cb();
 }
 
@@ -45,19 +40,16 @@ function setJs(cb) {
   src('src/js/**/*.js')
   .pipe(rollup({ plugins: [babelRollup(), resolve(), commonjs()] }, 'umd'))
   .pipe(dest('dist/js'))
-  .pipe(browserSync.reload({
-    stream: true
-  }));
+  .pipe(browserSync.stream())
   cb();
 }
 
 function reloadFiles(cb){
   watch('src/*.html', setHtml); 
   watch('src/scss/**/*.scss', setSass); 
-  watch('src/*.html', browserSync.reload); 
-  watch('src/js/**/*.js', browserSync.reload); 
+  watch('src/*.html').on('change', browserSync.reload);
+  watch('src/js/**/*.js', setJs, browserSync.reload); 
   cb();
 }
 
-exports.build = series(initBrowserSync, setSass, setJs, setImages, setHtml, reloadFiles);
-exports.default = series(initBrowserSync, setSass, setJs, setImages, setHtml, reloadFiles);
+exports.default = series(setSass, setJs, setImages, setHtml, initBrowserSync, reloadFiles);

@@ -33,12 +33,17 @@
             <a href="#" class="social-media-btn" id="tw-btn"><i class="fab fa-twitter fa-lg media-icon"></i></a>
             <a href="#" class="social-media-btn" id="yt-btn"><i class="fab fa-youtube fa-lg media-icon"></i></a>
         </div>
+        <!--Boton para el menu desplegable en versión mobile-->
+        <div class="hamburger-menu">
+            <a href="#" class="hamburger-icon"><i class="fa fa-bars fa-2x"></i></a>
+        </div>
     </header>
 
     <section class="banner-section" id="banner-sect">
         <div class="display-section" id="display-sect">
-            <h1>Contáctenos</h1>
-            <img src="images/main-img.svg" class="main-img" alt="">
+            <h1 class="banner-title">Contáctenos</h1>
+            <img src="images/main-img.svg" class="main-img">
+            <img src="images/main-img-xs.svg" class="main-img-xs">
         </div>
     </section>
 
@@ -65,19 +70,21 @@
                     </div>
                     <div>
                         <label for="userid" class="labels">Cédula <abbr title="required">*</abbr></label><br>
-                        <input type="text" class="form-input" name="userid" id="userid" required><br>
+                        <input type="text" class="form-input" name="userid" id="userid" required maxlength="20" onpaste="return false"><br>
                         <p class="required-text">El campo es obligatorio.</p>
                     </div>
-                </div><br>
+                </div>
 
-                <label for="affair" class="labels">Asunto <abbr title="required">*</abbr></label><br>
-                <select name="affair" id="affair" class="form-select" required>
-                    <option hidden>-- Seleccione una opción --</option>
-                    <option value="opt1">Opción 1</option>
-                    <option value="opt2">Opción 2</option>
-                    <option value="opt3">Opción 3</option>
-                </select><br>
-                <p class="required-text">El campo es obligatorio.</p><br>
+                <div class="form-group">
+                    <label for="affair" class="labels">Asunto <abbr title="required">*</abbr></label><br>
+                    <select name="affair" id="affair" class="form-select" required>
+                        <option hidden value="opt0">-- Seleccione una opción --</option>
+                        <option value="opt1">Opción 1</option>
+                        <option value="opt2">Opción 2</option>
+                        <option value="opt3">Opción 3</option>
+                    </select><br>
+                    <p class="required-text">El campo es obligatorio.</p>
+                </div>
 
                 <div class="form-sect">
                     <div class="input-group">
@@ -90,14 +97,14 @@
                         <input type="text" class="form-input" name="email" id="email" required><br>
                         <p class="required-text">El campo es obligatorio.</p>
                     </div>
-                </div><br>
+                </div>
 
                 <label for="msg" class="labels">Mensaje <abbr title="required">*</abbr></label><br>
                 <textarea name="msg" id="msg" cols="30" rows="5" class="form-txt" required></textarea>
                 <p class="required-text">El campo es obligatorio.</p><br>
             </form>
 
-            <button class="submit-btn" data-form="contactus-form" type="button">Enviar<img src="../images/submit.svg" class="submit-icon"></button>
+            <button class="submit-btn" id="submit-btn" data-form="contactus-form" type="button">Enviar<img src="../images/submit.svg" class="submit-icon"></button>
         </div>
     </section>
 

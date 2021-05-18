@@ -1,0 +1,21 @@
+@mixin banner-section($height){
+    width: 100%;
+    height: $height;
+    background-color: #f2f2f2;
+    display: flex;
+}
+
+@mixin display-section($width) {
+    width: $width;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+%main-image {
+    align-self: flex-end;
+    position: absolute;
+    z-index: 0;
+    margin-left: 460px;
+}
