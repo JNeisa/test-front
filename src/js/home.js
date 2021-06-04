@@ -1,7 +1,7 @@
 import { cardTemplate } from './templates/templates';
-import ContacForm from './clases/contactForm';
+import { ContactForm } from './clases/contactForm';
 import { Services } from './servercalls/services';
-import { NULL } from 'node-sass';
+import { Alerts } from './templates/alerts';
 
 class Home {
     constructor() {
@@ -22,10 +22,11 @@ class Home {
 
     listeners() {
         let services = new Services();
+        let alerts = new Alerts();
         let btns = document.querySelectorAll('.submit-btn');
         btns[0].click(checkForm());
 
-        document.querySelectorAll('.required-text').forEach(function (el) {
+        document.querySelectorAll('.required-text').forEach((el) => {
             el.style.visibility = "hidden";
         });
 
@@ -36,8 +37,8 @@ class Home {
                 //---sendData debe ir false---
                 let sendData = true;
 
-                for (let pair of formData) {
-                    /*if (pair[0] == "subject") {
+                /*for (let pair of formData) {
+                    if (pair[0] == "subject") {
                         if (pair[1] == 'opt0') {
                             let input = document.querySelector('select[name=subject]');
                             input.parentElement.querySelector('.required-text').innerHTML = 'Opción invalida';
@@ -55,12 +56,11 @@ class Home {
                         break;
                     } else {
                         sendData = true;
-                    }*/
-                }
+                    }
+                }*/
 
                 if (sendData == true /*&& formData.get('subject') != "opt0"*/) {
-                    alert("Información enviada exitosamente!");
-                    let contactForm = new ContacForm(
+                    let contactForm = new ContactForm(
                         formData.get('username'),
                         parseInt(formData.get('userid')),
                         formData.get('subject'),
@@ -69,7 +69,18 @@ class Home {
                         formData.get('msg')
                     );
 
-                    services.postForms(contactForm);
+                    services.postForms(contactForm)
+                        .then(async (response) => {
+                            if (response.status === 200) {
+                                const x = await Promise.resolve("Información enviada!");
+                                return await Promise.reject(x, alert(x));
+                            }
+                            const responseInJson = await Promise.resolve(response.json());
+                            return await Promise.reject(alerts.contactFormError(responseInJson));
+                        })
+                        .catch(e => {
+                            console.log(e);
+                        })
                 }
             });
         });
@@ -83,18 +94,18 @@ class Home {
             if (!regexp.exec(key)) {
                 e.preventDefault();
             }
-        });*/
+        });
 
-        /*document.querySelector('input[name=userid]').addEventListener('keypress', (e) => {
+        document.querySelector('input[name=userid]').addEventListener('keypress', (e) => {
             let key = e.key;
             let numbers = /[0-9]/;
 
             if (!numbers.exec(key)) {
                 e.preventDefault();
             }
-        });*/
+        });
 
-        /*document.querySelector('input[name=userphone]').addEventListener('keypress', (e) => {
+        document.querySelector('input[name=userphone]').addEventListener('keypress', (e) => {
             let key = e.key;
             let numbers = /[0-9+]/;
 

@@ -9,4 +9,4 @@ class ContactForm {
     }
 }
 
-export default ContactForm;
+export {ContactForm};
