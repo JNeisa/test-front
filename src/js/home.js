@@ -1,4 +1,4 @@
-import { cardTemplate } from './templates/templates';
+import { Templates } from './templates/templates';
 import { ContactForm } from './clases/contactForm';
 import { Services } from './servercalls/services';
 import { Alerts } from './templates/alerts';
@@ -6,17 +6,26 @@ import { Alerts } from './templates/alerts';
 class Home {
     constructor() {
         this.services = new Services();
+        this.templates = new Templates();
         this.listeners();
-        this.setFormValidation();
         this.services.getPlaces().then(data => {
             let places = data;
             let cardsContainer = document.querySelector('.centers-info');
             let htmltoappend = '';
             places.forEach((place) => {
-                htmltoappend += cardTemplate(place);
+                htmltoappend += this.templates.cardTemplate(place);
 
             });
             cardsContainer.innerHTML = htmltoappend;
+        });
+        this.services.getSubjects().then(data => {
+            let subjects = data;
+            let subjectsContainer = document.querySelector('.form-select');
+            let htmltoappend = '<option hidden value="opt0">-- Seleccione una opción --</option>';
+            subjects.forEach((subject) => {
+                htmltoappend += this.templates.subjectTemplate(subject);
+            });
+            subjectsContainer.innerHTML = htmltoappend;
         });
     }
 
@@ -37,29 +46,7 @@ class Home {
                 //---sendData debe ir false---
                 let sendData = true;
 
-                /*for (let pair of formData) {
-                    if (pair[0] == "subject") {
-                        if (pair[1] == 'opt0') {
-                            let input = document.querySelector('select[name=subject]');
-                            input.parentElement.querySelector('.required-text').innerHTML = 'Opción invalida';
-                            input.parentElement.querySelector('.required-text').style.visibility = "visible";
-                            alert('Faltan campos por llenar');
-                            break;*
-                        }else{
-                            sendData = true;
-                        }
-                    } else if (pair[1] == "") {
-                        let input = document.getElementById(pair[0]);
-                        input.parentElement.querySelector('.required-text').style.visibility = "visible";
-                        input.focus();
-                        alert('Faltan campos por llenar');
-                        break;
-                    } else {
-                        sendData = true;
-                    }
-                }*/
-
-                if (sendData == true /*&& formData.get('subject') != "opt0"*/) {
+                if (sendData == true) {
                     let contactForm = new ContactForm(
                         formData.get('username'),
                         parseInt(formData.get('userid')),
@@ -84,35 +71,6 @@ class Home {
                 }
             });
         });
-    }
-
-    setFormValidation() {
-        /*document.querySelector('input[name=username]').addEventListener('keypress', (e) => {
-            let key = e.key;
-            let regexp = /[a-zA-Z0-9 ]/;
-
-            if (!regexp.exec(key)) {
-                e.preventDefault();
-            }
-        });
-
-        document.querySelector('input[name=userid]').addEventListener('keypress', (e) => {
-            let key = e.key;
-            let numbers = /[0-9]/;
-
-            if (!numbers.exec(key)) {
-                e.preventDefault();
-            }
-        });
-
-        document.querySelector('input[name=userphone]').addEventListener('keypress', (e) => {
-            let key = e.key;
-            let numbers = /[0-9+]/;
-
-            if (!numbers.exec(key)) {
-                e.preventDefault();
-            }
-        });*/
     }
 }
 

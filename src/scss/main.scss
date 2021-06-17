@@ -1,6 +1,7 @@
 @import "base/fonts";
 @import "components/buttons";
 @import "components/images";
+@import "components/tables";
 @import "layout/bannner";
 @import "layout/cards";
 @import "layout/layout";
@@ -359,6 +360,45 @@ body {
             .sub-info {
                 @include roboto($purple, 14px, 4);
             }
+        }
+    }
+}
+
+.view-ct-us-table{
+    @include main-section(100%, center);
+    height: 660px;
+    margin-bottom: 12px;
+    overflow: auto;
+
+    .contactus-info-table{
+        @extend %contactus-info-table;
+    }
+}
+
+.pag-nav {
+    @include main-section(100%, center);
+
+    .pagination{
+        @include main-section(50%, center);
+        align-items: center;
+        margin-bottom: 6px;
+
+        .labels{
+            @include roboto($black, 16px, 4);
+        }
+
+        .pag-btn{
+            @extend %pag-btn;
+        }
+
+        .page-opt{
+            @include form-input(30px);
+            width: 50px;
+            margin: 0px 4px;
+        }
+    
+        .inverted{
+            transform: rotate(180deg);
         }
     }
 }

@@ -1,0 +1,36 @@
+@import "base/fonts";
+
+@mixin table-font($width) {
+    border: 1px solid black;
+    width: $width;
+}
+
+%contactus-info-table{
+    @include table-font(100%);
+    border-collapse: separate;
+    border-spacing: 0px;
+
+    th{
+        @include table-font(9%);
+        @include roboto($black, 14px, 7);
+        text-align: center;
+    } 
+    
+    td{
+        @include table-font(9%);
+        @include roboto($black, 13px, 4);
+        line-height: 16px;
+    }
+
+    .msg-cell{
+        width: 30%;
+    }
+
+    .name-cell{
+        width: 16%;
+    }
+
+    .email-cell{
+        width: 13%;
+    }
+}

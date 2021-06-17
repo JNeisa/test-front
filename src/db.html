@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <section class="searchBar">
+
+    </section>
+    
+    <section class="view-ct-us-table">
+        <table class="contactus-info-table" id="contactus-info">
+            <thead>
+                <tr>
+                    <th class="name-cell">Nombre</th>
+                    <th>Cédula</th>
+                    <th>Teléfono</th>
+                    <th class="email-cell">Correo electrónico</th>
+                    <th>Fecha</th>
+                    <th>Asunto</th>
+                    <th class="msg-cell">Mensaje</th>
+                </tr>
+            </thead>
+            <tbody class="contactus-info-table ct-us-info-table">
+
+            </tbody>
+        </table>
+    </section>
+
+    <section class="pag-nav">
+        <form class="" id="">
+            <div class="pagination">
+                <label for="results-per-page" class="labels">Resultados por pagina:</label>
+                <select name="results-per-page" id="results-per-page" class="results-per-page page-opt">
+                    <option name="10" value="10">10</option>
+                    <option name="50" value="50">50</option>
+                    <option name="100" value="100">100</option>
+                </select>
+            </div>
+            <div class="pagination">
+                <button class="pag-btn" type="button"><img src="../images/double.png" class=""></button>
+                <button class="pag-btn" type="button"><img src="../images/single.png" class=""></button>
+                <select name="current-page" id="current-page" class="current-page page-opt">
+                    <!--Cantidad de paginas disponibles-->
+                </select>
+                <button class="pag-btn" type="button"><img src="../images/single.png" class="inverted"></button>
+                <button class="pag-btn" type="button"><img src="../images/double.png" class="inverted"></button>
+            </div>
+            
+        </form>
+    </section>
+    <script src="./js/contactus-db-info.js" type="module"></script>
+</body>
+</html>
