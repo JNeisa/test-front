@@ -1,2 +1,4 @@
 node_modules/
 dist/
+/Test1/Test1/bin/Debug/netcoreapp3.1
+/Test1/Test1/obj
