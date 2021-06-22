@@ -1,0 +1,23 @@
+@import "../base/fonts";
+
+%search-tags{
+    @include roboto($black, 14px, 4);
+    margin: 0px 5px;
+    padding: 2px 8px 2px 4px;
+    background-color: $light-blue;
+    border-radius: 4px 10px;
+    display: inline;
+    pointer-events: none;
+    &:after{
+        content: attr(data-close);
+        margin-left: 6px;
+        cursor: pointer;
+        pointer-events: auto;
+    }
+}
+
+%close-tag{
+    @include roboto($purple, 15px, 7);
+    cursor: pointer;
+    margin-left: 6px;
+}

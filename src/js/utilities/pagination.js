@@ -13,4 +13,19 @@ export class PaginationUtility {
         btns[2].disabled = (HasNext) ? false : true;
         btns[3].disabled = (CurrentPage == TotalCount) ? true : false;
     }
+
+    async setPageInfo(response, tableContainer, countContainer){
+        let templates = new Templates();
+        let responseInJson = await Promise.resolve(response.json());
+        let pagination = JSON.parse(response.headers.get('x-pagination'));
+        let pages = templates.resultsPerPageTemplate(pagination.TotalPages);
+
+        tableContainer.innerHTML = templates.tableTemplate(responseInJson);
+        countContainer.innerHTML = pages;
+        countContainer.options.namedItem(`${pagination.CurrentPage}`).selected = true;
+    }
+
+    hasAttribute(element){
+        return element.hasAttribute('data-order') ? true : false;
+    }
 }

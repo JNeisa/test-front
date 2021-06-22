@@ -34,6 +34,10 @@ export class Templates {
         return `<option value="${htmlValue}">${name}</option>`;
     }
 
+    tagTemplate(text){
+        return `<li class="search-tag" data-close="x">${text}</li>`;
+    }
+
     tableTemplate(infoFromDB){
         let htmlToAppend = '';
         
@@ -57,5 +61,10 @@ export class Templates {
             htmlToAppend += `<option name="${i}" value="${i}">${i}</option>`;
         }
         return htmlToAppend;
+    }
+
+    eraseHtml(container){
+        let defaultHtml = '<!--Espacio para mostrar los tags de la busqueda-->';
+        container.innerHTML = defaultHtml;
     }
 }

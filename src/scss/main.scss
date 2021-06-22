@@ -2,6 +2,7 @@
 @import "components/buttons";
 @import "components/images";
 @import "components/tables";
+@import "components/tags";
 @import "layout/bannner";
 @import "layout/cards";
 @import "layout/layout";
@@ -364,14 +365,58 @@ body {
     }
 }
 
+.search-bar{
+    @include main-section(100%, flex-start);
+    height: 66px;
+    align-items: center;
+
+    .search-form{
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        .labels{
+            @include roboto($black, 16px, 4);
+        }
+
+        .tag-container{
+            padding: 0px;
+
+            .search-tag{
+                @extend %search-tags;
+            }
+
+            .close-tag{
+                @extend %close-tag;
+            }
+        }
+
+        .search-input{
+            @include form-input(27px);
+            width: 250px;
+            margin: 0px 5px;
+        }
+    
+        .search-btn {
+            @include bigcircle-btn(26px, 26px, "../images/search.svg");
+            margin: 0px 5px;
+        }
+    }
+}
+
 .view-ct-us-table{
     @include main-section(100%, center);
-    height: 660px;
+    height: 700px;
     margin-bottom: 12px;
     overflow: auto;
 
     .contactus-info-table{
         @extend %contactus-info-table;
+
+        .order-by{
+            @extend %order-by;
+            display: inline-block;
+        }
     }
 }
 
@@ -395,10 +440,6 @@ body {
             @include form-input(30px);
             width: 50px;
             margin: 0px 4px;
-        }
-    
-        .inverted{
-            transform: rotate(180deg);
         }
     }
 }
