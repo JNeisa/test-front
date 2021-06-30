@@ -1,4 +1,4 @@
-import { Templates } from './templates/templates';
+import { IndexTemplates } from './templates/indexTemplates';
 import { ContactForm } from './clases/contactForm';
 import { Services } from './servercalls/services';
 import { Alerts } from './templates/alerts';
@@ -6,7 +6,7 @@ import { Alerts } from './templates/alerts';
 class Home {
     constructor() {
         this.services = new Services();
-        this.templates = new Templates();
+        this.templates = new IndexTemplates();
         this.listeners();
         this.services.getPlaces().then(data => {
             let places = data;

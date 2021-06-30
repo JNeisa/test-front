@@ -13,16 +13,6 @@ export class Services {
         return response.json();
     }
 
-    async getContactUsInfo() {
-        const response = await fetch("https://localhost:44371/contactusdbinfo", { method: 'GET' });
-        return response.json();
-    }
-
-    async getPagination() {
-        const response = await fetch("https://localhost:44371/contactusdbinfo", { method: 'GET' });
-        return response.headers.get('x-pagination');
-    }
-
     async postPagingParameters(object){
         const response = await fetch("https://localhost:44371/contactusdbinfo", {
             method: 'POST',
@@ -35,7 +25,7 @@ export class Services {
     }
 
     async postForms(object) {
-        const response = await fetch('https://localhost:44371/forms', {
+        const response = await fetch('https://localhost:44371/contactusform', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

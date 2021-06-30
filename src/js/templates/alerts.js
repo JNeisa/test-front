@@ -29,8 +29,4 @@ export class Alerts{
 
         alert(alertMsg);
     }
-
-    noResults(tag){
-        alert(`No se encontraron resultados relacionados con ${tag}`);
-    }
 }

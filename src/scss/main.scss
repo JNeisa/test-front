@@ -385,10 +385,6 @@ body {
             .search-tag{
                 @extend %search-tags;
             }
-
-            .close-tag{
-                @extend %close-tag;
-            }
         }
 
         .search-input{
@@ -417,6 +413,10 @@ body {
             @extend %order-by;
             display: inline-block;
         }
+    }
+
+    .no-content {
+        @include roboto($light-blue, 20px, 7);
     }
 }
 

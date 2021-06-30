@@ -1,4 +1,4 @@
-export class Templates {
+export class IndexTemplates {
     constructor(){
 
     }
@@ -55,7 +55,7 @@ export class Templates {
         return htmlToAppend;
     }
 
-    resultsPerPageTemplate(totalPages){
+    currentPageTemplate(totalPages){
         let htmlToAppend = '';
         for(let i = 1; i <= totalPages; i++){
             htmlToAppend += `<option name="${i}" value="${i}">${i}</option>`;
@@ -64,7 +64,7 @@ export class Templates {
     }
 
     eraseHtml(container){
-        let defaultHtml = '<!--Espacio para mostrar los tags de la busqueda-->';
+        let defaultHtml = '<!--default-->';
         container.innerHTML = defaultHtml;
     }
 }

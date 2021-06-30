@@ -1,28 +1,26 @@
-import { Templates } from "../templates/templates";
+import { DbTemplates } from '../templates/dbTemplates';
 
 export class PaginationUtility {
     contructor(){
-        this.templates = new Templates();
+
     }
 
-    setPagBtns(btns, pagInfo){
-        let {CurrentPage, TotalCount, HasPrevious, HasNext} = pagInfo;
-
-        btns[0].disabled = (CurrentPage == 1) ? true : false;
-        btns[1].disabled = (HasPrevious) ? false : true;
-        btns[2].disabled = (HasNext) ? false : true;
-        btns[3].disabled = (CurrentPage == TotalCount) ? true : false;
-    }
-
-    async setPageInfo(response, tableContainer, countContainer){
-        let templates = new Templates();
+    async setPageInfo(response, tableContainer, countContainer, btns){
+        let templates = new DbTemplates();
         let responseInJson = await Promise.resolve(response.json());
-        let pagination = JSON.parse(response.headers.get('x-pagination'));
-        let pages = templates.resultsPerPageTemplate(pagination.TotalPages);
+        let {currentPage, pageSize, totalCount, totalPages, hasNext, hasPrevious, data} = responseInJson;
 
-        tableContainer.innerHTML = templates.tableTemplate(responseInJson);
+        let rows = data;
+        let pages = templates.currentPageTemplate(totalPages);
+
+        tableContainer.innerHTML = templates.tableTemplate(rows);
         countContainer.innerHTML = pages;
-        countContainer.options.namedItem(`${pagination.CurrentPage}`).selected = true;
+        countContainer.options.namedItem(`${currentPage}`).selected = true;
+
+        btns[0].disabled = (currentPage == 1) ? true : false;
+        btns[1].disabled = (hasPrevious) ? false : true;
+        btns[2].disabled = (hasNext) ? false : true;
+        btns[3].disabled = (currentPage == totalPages) ? true : false;
     }
 
     hasAttribute(element){
