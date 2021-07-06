@@ -10,10 +10,9 @@ export class PaginationUtility {
         let responseInJson = await Promise.resolve(response.json());
         let {currentPage, pageSize, totalCount, totalPages, hasNext, hasPrevious, data} = responseInJson;
 
-        let rows = data;
         let pages = templates.currentPageTemplate(totalPages);
 
-        tableContainer.innerHTML = templates.tableTemplate(rows);
+        templates.tableTemplate(tableContainer, data);
         countContainer.innerHTML = pages;
         countContainer.options.namedItem(`${currentPage}`).selected = true;
 
@@ -21,6 +20,18 @@ export class PaginationUtility {
         btns[1].disabled = (hasPrevious) ? false : true;
         btns[2].disabled = (hasNext) ? false : true;
         btns[3].disabled = (currentPage == totalPages) ? true : false;
+
+        if(response.status != 200) {
+            document.querySelector('.loading').style.display = 'flex';
+            document.querySelector('.view-ct-us-table').style.visibility = 'hidden';
+            document.querySelector('.pag-nav').style.visibility = 'hidden';
+        } else if(response.status === 200) {
+            setTimeout(function() {
+                document.querySelector('.loading').style.display = 'none';
+                document.querySelector('.view-ct-us-table').style.visibility = 'visible';
+                document.querySelector('.pag-nav').style.visibility = 'visible';
+            }, 1000);
+        }
     }
 
     hasAttribute(element){

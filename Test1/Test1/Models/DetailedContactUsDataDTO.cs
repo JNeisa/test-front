@@ -1,12 +1,11 @@
-﻿using FluentValidation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Test1.Models
 {
-    public class Form
+    public class DetailedContactUsDataDTO
     {
         public string Name { get; set; }
         public long Userid { get; set; }
@@ -14,5 +13,6 @@ namespace Test1.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
+        public string CreationDate { get; set; }
     }
 }

@@ -19,32 +19,33 @@ namespace Test1.Controllers
     public class ContactUsFormController : ControllerBase
     {
         private readonly IFormService services;
-        private readonly IDBService servicesDB;
+        private readonly ISubjectService subjectServices;
+        private readonly IMessageService messageServices;
 
-        public ContactUsFormController(IFormService services, IDBService servicesDB)
+        public ContactUsFormController(IFormService services, ISubjectService subjectServices, IMessageService messageServices)
         {
             this.services = services;
-            this.servicesDB = servicesDB;
+            this.subjectServices = subjectServices;
+            this.messageServices = messageServices;
         }
 
         [HttpGet]
         public IEnumerable<Subject> Get()
         {
-            var subjects = servicesDB.GetSubjects();
-            return subjects;
+            return subjectServices.GetAllSubjects();
         }
 
         [HttpPost]
-        public ActionResult Confirmation(Form form)
+        public ActionResult Confirmation(FormDTO form)
         {
             var sForm = services.SanitizeContactUsForm(form);
             var results = services.ValidateForm(sForm);
             if (!results.IsValid)
             {
-                var list = new List<ErrorResponse>();
+                var list = new List<ErrorResponseDTO>();
                 foreach (var error in results.Errors)
                 {
-                    ErrorResponse err = new ErrorResponse
+                    ErrorResponseDTO err = new ErrorResponseDTO
                     {
                         ErrorName = error.PropertyName,
                         ErrorDesc = error.ErrorMessage
@@ -55,7 +56,7 @@ namespace Test1.Controllers
             }
             else
             {
-                var subject = servicesDB.GetSubjects(sForm.Subject);
+                var subject = subjectServices.GetSubjectByName(sForm.Subject);
                 DateTime date = DateTime.Now;
 
                 var message = new Message()
@@ -68,7 +69,7 @@ namespace Test1.Controllers
                     Subject = subject,
                     CreationDate = date
                 };
-                servicesDB.SaveMessage(message);
+                messageServices.SaveMessage(message);
 
                 return Ok();
             }

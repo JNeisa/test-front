@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información detallada</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <section class="info-to-edit">
+        <form action="#" class="edit-info" id="edit-info-form">
+            <div class="form-sect">
+                <div class="input-group">
+                    <label for="username" class="labels">Nombre <abbr title="required">*</abbr></label><br>
+                    <input type="text" class="form-input" name="username" id="username" required onpaste="return false"><br>
+                    <p for="username" class="required-text">El campo es obligatorio.</p>
+                </div>
+                <div>
+                    <label for="userid" class="labels">Cédula <abbr title="required">*</abbr></label><br>
+                    <input type="text" class="form-input" name="userid" id="userid" required maxlength="20" onpaste="return false"><br>
+                    <p class="required-text">El campo es obligatorio.</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="subject" class="labels">Asunto <abbr title="required">*</abbr></label>
+                <select name="subject" id="subject" class="form-select" required>
+                    
+                </select>
+                <p class="required-text">El campo es obligatorio.</p>
+            </div>
+
+            <div class="form-sect">
+                <div class="input-group">
+                    <label for="userphone" class="labels">Teléfono <abbr title="required">*</abbr></label><br>
+                    <input type="text" class="form-input" name="userphone" id="userphone" required onpaste="return false"><br>
+                    <p class="required-text">El campo es obligatorio.</p>
+                </div>
+                <div>
+                    <label for="email" class="labels">Correo electrónico <abbr title="required">*</abbr></label><br>
+                    <input type="email" class="form-input" name="email" id="email" required onpaste="return false"><br>
+                    <p class="required-text">El campo es obligatorio.</p>
+                </div>
+            </div>
+
+            <label for="msg" class="labels">Mensaje <abbr title="required">*</abbr></label><br>
+            <textarea name="msg" id="msg" cols="30" rows="5" class="form-txt" required></textarea>
+            <p class="required-text">El campo es obligatorio.</p><br>
+        </form>
+    </section>
+    
+    <div class="send-changes-btn">
+        <button class="submit-btn" id="submit-btn" data-form="edit-info-form" type="button">Guardar cambios<img src="../images/submit.svg" class="submit-icon"></button>
+        <button class="submit-btn" id="submit-btn" data-form="edit-info-form" type="button">Eliminar entrada<img src="../images/submit.svg" class="submit-icon"></button>
+    </div>
+    <script src="./js/detailed-info.js" type="module"></script>
+</body>
+</html>

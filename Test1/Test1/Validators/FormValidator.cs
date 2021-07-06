@@ -7,7 +7,7 @@ using Test1.Models;
 
 namespace Test1.Validators
 {
-    public class FormValidator : AbstractValidator<Form>
+    public class FormValidator : AbstractValidator<FormDTO>
     {
         public FormValidator()
         {

@@ -19,13 +19,8 @@ class Home {
             cardsContainer.innerHTML = htmltoappend;
         });
         this.services.getSubjects().then(data => {
-            let subjects = data;
             let subjectsContainer = document.querySelector('.form-select');
-            let htmltoappend = '<option hidden value="opt0">-- Seleccione una opción --</option>';
-            subjects.forEach((subject) => {
-                htmltoappend += this.templates.subjectTemplate(subject);
-            });
-            subjectsContainer.innerHTML = htmltoappend;
+            this.templates.subjTemplate(data, subjectsContainer);
         });
     }
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Test1.Models
 {
-    public class Place
+    public class PlaceDTO
     {
         public string Name { get; set; }
         public string Address { get; set; }

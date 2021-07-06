@@ -13,8 +13,8 @@ export class Services {
         return response.json();
     }
 
-    async postPagingParameters(object){
-        const response = await fetch("https://localhost:44371/contactusdbinfo", {
+    async postPagingParameters(object) {
+        const response = await fetch("https://localhost:44371/contactusbasicinfo", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,6 +26,17 @@ export class Services {
 
     async postForms(object) {
         const response = await fetch('https://localhost:44371/contactusform', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(object)
+        });
+        return response;
+    }
+
+    async postBasicInfo(object) {
+        const response = await fetch("https://localhost:44371/contactusdetailedinfo", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

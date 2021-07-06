@@ -1,6 +1,7 @@
 @import "base/fonts";
 @import "components/buttons";
 @import "components/images";
+@import "components/spinner";
 @import "components/tables";
 @import "components/tags";
 @import "layout/bannner";
@@ -365,6 +366,7 @@ body {
     }
 }
 
+// db.html
 .search-bar{
     @include main-section(100%, flex-start);
     height: 66px;
@@ -402,7 +404,7 @@ body {
 
 .view-ct-us-table{
     @include main-section(100%, center);
-    height: 700px;
+    max-height: 660px;
     margin-bottom: 12px;
     overflow: auto;
 
@@ -413,10 +415,30 @@ body {
             @extend %order-by;
             display: inline-block;
         }
+
+        .edit-info{
+            @extend %edit-info;
+        }
     }
 
     .no-content {
         @include roboto($light-blue, 20px, 7);
+    }
+}
+
+.loading{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $grey;
+    opacity: 0.3;
+    z-index: 100;
+
+    .lds-ripple{
+        @extend %lds-ripple;
     }
 }
 
@@ -440,6 +462,86 @@ body {
             @include form-input(30px);
             width: 50px;
             margin: 0px 4px;
+        }
+    }
+}
+
+// detailedInfo.html
+.info-to-edit{
+    @include main-section(100%, center);
+    margin-top: 30px;
+
+    .edit-info{
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        h3 {
+            @include roboto($purple, 18px, 7);
+            margin: 122px 0px 30px 0px;
+        }
+
+        abbr {
+            color: $red;
+            text-decoration: none;
+        }
+
+        .form-sect {
+            display: flex;
+            justify-content: flex-start;
+            height: 90px;
+
+            .input-group {
+                margin-right: 30px;
+            }
+        }
+
+        .form-group{
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .labels {
+            @include roboto($black, 16px, 7);
+        }
+
+        .required-text {
+            @include roboto($red, 10px, 4);
+        }
+
+        .form-input {
+            @include form-input(25px);
+            width: 250px;
+        }
+
+        .form-select {
+            @include form-input(30px);
+            width: 543px;
+        }
+
+        .form-txt {
+            @include form-input(118px);
+            width: 538px;
+        }
+    }
+}
+
+.send-changes-btn{
+    width: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+
+    .submit-btn {
+        @extend %submit-btn;
+
+        .submit-icon {
+            width: 8px;
+            height: 14px;
+            margin-left: 18px;
+            opacity: 0.6;
         }
     }
 }

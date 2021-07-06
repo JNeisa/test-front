@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Test1.Models.Pagination
 {
-    public class PagedList<T> : List<T>
+    public class PagedListDTO<T> where T : class
     {
         public int CurrentPage { get; private set; }
         public int PageSize { get; private set; }
@@ -14,21 +14,15 @@ namespace Test1.Models.Pagination
         public bool HasPrevious => CurrentPage > 1;
         public bool HasNext => CurrentPage < TotalPages;
 
-        public PagedList(List<T> items, int count, int pageNumber, int pageSize)
+        public List<T> Data { get; set; }
+
+        public PagedListDTO(List<T> items, int count, int pageNumber, int pageSize)
         {
             CurrentPage = pageNumber;
             PageSize = pageSize;
             TotalCount = count;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-            AddRange(items);
-        }
-
-        public static PagedList<T> GetPagedList(IQueryable<T> source, int pageNumber, int pageSize)
-        {
-            var count = source.Count();
-            var items = source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
-
-            return new PagedList<T>(items, count, pageNumber, pageSize);
+            TotalPages = (pageSize > 0) ? (int)Math.Ceiling(count / (double)pageSize) : 0;
+            Data = items;
         }
     }
 }

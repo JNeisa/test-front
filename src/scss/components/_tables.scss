@@ -1,7 +1,7 @@
 @import "base/fonts";
 
 @mixin table-font($width) {
-    border: 1px solid black;
+    border: 1px solid $grey;
     width: $width;
 }
 
@@ -11,27 +11,18 @@
     border-spacing: 0px;
 
     th{
-        @include table-font(9%);
+        @include table-font(20%);
         @include roboto($black, 14px, 7);
         text-align: center;
     } 
     
     td{
-        @include table-font(9%);
+        @include table-font(20%);
         @include roboto($black, 13px, 4);
-        line-height: 16px;
+        line-height: 28px;
     }
 
-    .msg-cell{
-        width: 30%;
+    .edit-action{
+        text-align: center;
     }
-
-    .name-cell{
-        width: 16%;
-    }
-
-    .email-cell{
-        width: 13%;
-    }
-
 }

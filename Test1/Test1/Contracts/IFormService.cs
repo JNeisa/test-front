@@ -10,8 +10,8 @@ namespace Test1.Contracts
 {
     public interface IFormService
     {
-        ValidationResult ValidateForm(Form form);
-        Form SanitizeContactUsForm(Form contactUsForm);
-        PagingParameters SanitizePagParam(PagingParameters pagingParameters);
+        ValidationResult ValidateForm(FormDTO form);
+        FormDTO SanitizeContactUsForm(FormDTO contactUsForm);
+        PagingParametersDTO SanitizePagParam(PagingParametersDTO pagingParameters);
     }
 }

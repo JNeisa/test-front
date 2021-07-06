@@ -28,10 +28,13 @@ export class IndexTemplates {
                 </div>`;
     }
 
-    subjectTemplate(subject){
-        let {name, htmlValue} = subject;
-
-        return `<option value="${htmlValue}">${name}</option>`;
+    subjTemplate(data, container) {
+        let htmlToAppend = '<option hidden value="opt0">-- Seleccione una opción --</option>';
+        data.forEach(e => {
+            let {name, htmlValue} = e;
+            htmlToAppend += `<option value="${htmlValue}" name="${htmlValue}">${name}</option>`;
+        });
+        container.innerHTML = htmlToAppend;
     }
 
     tagTemplate(text){

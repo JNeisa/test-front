@@ -31,6 +31,19 @@ class Home {
         const pageCountContainer = document.querySelector('.current-page');
         const pagBtns = document.querySelectorAll('.pag-btn');
 
+        /*document.addEventListener('readystatechange', event => {
+            if(event.target.readyState != 'complete') {
+                document.querySelector('.view-ct-us-table').style.visibility = 'hidden';
+                document.querySelector('.pag-nav').style.visibility = 'hidden';
+            } else if(event.target.readyState === 'complete') {
+                setTimeout(function() {
+                    document.querySelector('.loading').style.display = 'none';
+                    document.querySelector('.view-ct-us-table').style.visibility = 'visible';
+                    document.querySelector('.pag-nav').style.visibility = 'visible';
+                }, 1000);
+            }
+        });*/
+
         // Elementos para la busqueda
         let searchBtn = document.querySelector('.search-btn');
         let searchInput = document.querySelector('.search-input');
@@ -49,9 +62,7 @@ class Home {
 
         // Busqueda por correo o asunto - crea etiqueta que sirve de bandera para buscar
         searchBtn.addEventListener('click', () => {
-            if (searchInput.value == '') {
-                //pass
-            } else {
+            if (searchInput.value != '') {
                 let tag = this.templates.tagTemplate(searchInput.value);
                 tagContainer.innerHTML = tag;
                 searchInput.value = '';
@@ -72,7 +83,7 @@ class Home {
 
                 this.services.postPagingParameters(pagingParameters).then(async (response) => {
                     let respInJson = await Promise.resolve(response.clone().json());
-                    if (respInJson.totalPages == 0 & respInJson.data[0].message == searchTag.innerText){
+                    if (respInJson.totalPages == 0){
                         let tableSection = document.querySelector('.view-ct-us-table');
                         let btnsSection = document.querySelector('.pag-nav')
                         this.templates.eraseHtml(tableSection);
@@ -82,6 +93,8 @@ class Home {
                         this.pagUtility.setPageInfo(response, table, pageCountContainer, pagBtns);
                     }
                 });
+            } else {
+                alert('Ingrese un valor para la busqueda');
             }
         });
 

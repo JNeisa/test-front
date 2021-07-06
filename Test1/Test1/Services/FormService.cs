@@ -13,7 +13,7 @@ namespace Test1.Services
 {
     public class FormService : IFormService
     {
-        public ValidationResult ValidateForm(Form form)
+        public ValidationResult ValidateForm(FormDTO form)
         {
             // Establezco las variables
             var sanitizer = new HtmlSanitizer();
@@ -23,7 +23,7 @@ namespace Test1.Services
             // Valido la info entrante
             return validator.Validate(form);
         }
-        public Form SanitizeContactUsForm(Form contactUsForm)
+        public FormDTO SanitizeContactUsForm(FormDTO contactUsForm)
         {
             // Establezco las variables
             var sanitizer = new HtmlSanitizer();
@@ -37,7 +37,7 @@ namespace Test1.Services
             return sanitizedForm;
         }
 
-        public PagingParameters SanitizePagParam(PagingParameters pagingParameters)
+        public PagingParametersDTO SanitizePagParam(PagingParametersDTO pagingParameters)
         {
             var sanitizer = new HtmlSanitizer();
 

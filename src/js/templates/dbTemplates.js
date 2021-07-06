@@ -6,18 +6,28 @@ export class DbTemplates {
         return `<li class="search-tag" data-close="x">${text}</li>`;
     }
 
-    tableTemplate(infoFromDB) {
-        let htmlToAppend = '';
+    tableTemplate(tbody, infoToShow) {
+        this.eraseHtml(tbody);
+        infoToShow.forEach(row => {
+            let newRow = tbody.insertRow(-1);
+            newRow.insertCell(0).innerHTML = row["name"];
+            newRow.insertCell(1).innerHTML = row["email"];
+            newRow.insertCell(2).innerHTML = row["creationDate"];
+            newRow.insertCell(3).innerHTML = row["subject"];
+            let buttonCell = newRow.insertCell(-1);
+            buttonCell.innerHTML = '<a href="./detailedInfo.html" class="edit-info"><i class="far fa-edit"></i></a>';
+            
+            // Por alguna razon acá si reconoce el boton y se puede manipular la data ?
+            let btn = newRow.lastChild.getElementsByTagName('a')[0];
+            btn.addEventListener('click', () => {
+                document.cookie = `name = ${newRow.cells[0].innerHTML}`;
+                document.cookie = `email = ${newRow.cells[1].innerHTML}`;
+                document.cookie = `date = ${newRow.cells[2].innerHTML}`;
+                document.cookie = `subject = ${newRow.cells[3].innerHTML}`;
 
-        infoFromDB.forEach(row => {
-            htmlToAppend += `<tr>
-                                <td>${row.name}</th>
-                                <td>${row.email}</th>
-                                <td>${row.creationDate}</td>
-                                <td>${row.subject}</th>
-                            </tr>`
+                console.log(document.cookie);
+            });
         });
-        return htmlToAppend;
     }
 
     currentPageTemplate(totalPages) {

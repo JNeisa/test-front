@@ -1,9 +1,6 @@
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,14 +8,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Test1.Contracts;
-using Test1.Contracts.Pagination;
 using Test1.DB;
-using Test1.Models;
+using Test1.Repository;
 using Test1.Services;
-using Test1.Services.Pagination;
 using Test1.Validators;
 
 namespace Test1
@@ -35,17 +29,20 @@ namespace Test1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<ISubjectRepository, SubjectRepository>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddScoped<IFormService, FormService>();
-            services.AddScoped<IDBService, DBService>();
-            services.AddScoped<IContactUsService, ContactUsService>();
+            services.AddScoped<ISubjectService, SubjectService>();
+            services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<IDataToShowService, DataToShowService>();
             services.AddCors(options =>
             {
                 options.AddPolicy("localhost", builder =>
                 {
                     builder.WithOrigins("http://localhost:3000")
                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .WithExposedHeaders("X-pagination");
+                        .AllowAnyHeader();
                 });
             });
             services.AddControllers();

@@ -12,11 +12,11 @@ namespace Test1.Controllers
     public class PlacesController: ControllerBase
     {
         [HttpGet]
-        public IEnumerable<Place> Get() 
+        public IEnumerable<PlaceDTO> Get() 
         {
-            var places = new List<Place>
+            var places = new List<PlaceDTO>
             {
-                new Place
+                new PlaceDTO
                 {
                     Name = "Oficina Principal Facatativa",
                     Address = "Carrera 3 No. 4-60",
@@ -24,7 +24,7 @@ namespace Test1.Controllers
                     Schedule = "Lunes a viernes de 8:00 am a 12:15 pm - 2:00 pm a 5:30 pm."
                 },
 
-                new Place
+                new PlaceDTO
                 {
                     Name = "Centro de Atención Villeta",
                     Address = "Calle 4 No. 4-39",
@@ -32,7 +32,7 @@ namespace Test1.Controllers
                     Phone = 3212361299,
                     Schedule = "Lunes a viernes de 8:00 am a 12:15 pm - 2:00 pm a 5:30 pm."
                 },
-                new Place
+                new PlaceDTO
                 {
                     Name = "Centro de atención Funza",
                     Address = "Calle 14 N° 15-08 C.C. Bancolombia Márquez Plaza Local No. 2, 3 y 4",
@@ -40,7 +40,7 @@ namespace Test1.Controllers
                     Phone = 3125880110,
                     Schedule = "Lunes a viernes de 8:00 am a 12:15 pm - 2:00 pm a 5:30 pm."
                 },
-                new Place
+                new PlaceDTO
                 {
                     Name = "Centro de Atención Pacho",
                     Address = "Carrera 15 N° 7 - 08",

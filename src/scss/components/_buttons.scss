@@ -125,6 +125,9 @@
         background-image: linear-gradient(to top, #2a637d 0%, #167ea7 19%, #0c8dbe 34%, #0596cb 80%, #0399d0 100%);
         color:#ffffff;
     }
+    &:disabled{
+        color: $grey;
+    }
 }
 
 %order-by{
@@ -145,6 +148,32 @@
     text-decoration: none;
     display: flex;
     justify-content: center;
+    &:hover{
+        box-shadow: 4px 4px 4px rgba(178, 178, 178, 0.5);
+        background-image: linear-gradient(to top, #2a637d 0%, #167ea7 19%, #0c8dbe 34%, #0596cb 80%, #0399d0 100%);
+        color:#ffffff;
+    }
+}
+
+%edit-info{
+    width: 40px;
+    height: 25px;
+    border-radius: 25px;
+    border: 0;
+    background-color: #ffffff;
+    margin: auto;
+    cursor: pointer;
+    color: #0695c9;
+    font-family: "Roboto";
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: normal;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &:hover{
         box-shadow: 4px 4px 4px rgba(178, 178, 178, 0.5);
         background-image: linear-gradient(to top, #2a637d 0%, #167ea7 19%, #0c8dbe 34%, #0596cb 80%, #0399d0 100%);

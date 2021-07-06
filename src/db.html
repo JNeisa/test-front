@@ -13,6 +13,10 @@
 </head>
 
 <body>
+    <section class="loading">
+        <div class="lds-ripple"><div></div><div></div></div>
+    </section>
+    
     <section class="search-bar">
         <form action="#" class="search-form" id="search-form">
             <label for="search" class="labels">Búsqueda por asunto o correo electrónico:</label>
@@ -34,10 +38,11 @@
                     <th class="email-cell">Correo electrónico</th>
                     <th class="date-cell">Fecha<button class="order-by"><i class="fas fa-sort-amount-down"></i></button></th>
                     <th class="subject-cell">Asunto<button class="order-by"><i class="fas fa-sort-amount-down"></i></button></th>
+                    <th class="action-cell">Actions</th>
                 </tr>
             </thead>
             <tbody class="ct-us-info-table">
-
+                
             </tbody>
         </table>
     </section>
@@ -61,7 +66,6 @@
                 <button class="pag-btn" type="button"><i class="fas fa-angle-right fa-lg"></i></button>
                 <button class="pag-btn" type="button"><i class="fas fa-angle-double-right fa-lg"></i></button>
             </div>
-
         </form>
     </section>
     <script src="./js/contactus-db-info.js" type="module"></script>

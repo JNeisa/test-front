@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Test1.Models.Pagination
 {
-    public class PagingParameters
+    public class PagingParametersDTO
     {
         const int maxPageSize = 100;
         public int PageNumber { get; set; } = 1;
@@ -19,7 +19,7 @@ namespace Test1.Models.Pagination
             set
             {
                 //Operador ? => condition ? consequent : alternative
-                _pageSize = (value > maxPageSize) ? maxPageSize : value;
+                _pageSize = (value > maxPageSize) ? maxPageSize : (value <= 0) ? _pageSize : value;
             }
         }
         public string SearchParameter { get; set; }
