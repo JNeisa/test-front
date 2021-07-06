@@ -23,7 +23,6 @@ class Home {
         this.services.postBasicInfo(basicInfo).then(async (response) => {
             const responseInJson = await Promise.resolve(response.json());
             let {name, userid, email, phone, creationDate, subject, message} = responseInJson;
-            console.log(responseInJson);
 
             let inputs = document.querySelectorAll('.form-input');
             inputs[0].value = name;

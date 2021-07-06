@@ -1,0 +1,83 @@
+@import "../base/fonts";
+@import "../base/medias";
+@import "../components/buttons";
+@import "../layout/layout";
+
+.info-to-edit{
+    @include main-section(100%, center);
+    margin-top: 30px;
+
+    .edit-info{
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        h3 {
+            @include roboto($purple, 18px, 7);
+            margin: 122px 0px 30px 0px;
+        }
+
+        abbr {
+            color: $red;
+            text-decoration: none;
+        }
+
+        .form-sect {
+            display: flex;
+            justify-content: flex-start;
+            height: 90px;
+
+            .input-group {
+                margin-right: 30px;
+            }
+        }
+
+        .form-group{
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .labels {
+            @include roboto($black, 16px, 7);
+        }
+
+        .required-text {
+            @include roboto($red, 10px, 4);
+        }
+
+        .form-input {
+            @include form-input(25px);
+            width: 250px;
+        }
+
+        .form-select {
+            @include form-input(30px);
+            width: 543px;
+        }
+
+        .form-txt {
+            @include form-input(118px);
+            width: 538px;
+        }
+    }
+}
+
+.send-changes-btn{
+    width: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+
+    .submit-btn {
+        @extend %submit-btn;
+
+        .submit-icon {
+            width: 8px;
+            height: 14px;
+            margin-left: 18px;
+            opacity: 0.6;
+        }
+    }
+}
