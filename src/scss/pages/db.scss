@@ -50,9 +50,13 @@
     .contactus-info-table{
         @extend %contactus-info-table;
 
+        .order-cell {
+            display: flex;
+            justify-content: center;
+        }
+
         .order-by{
             @extend %order-by;
-            display: inline-block;
         }
 
         .edit-info{
