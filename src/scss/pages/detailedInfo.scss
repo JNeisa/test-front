@@ -69,15 +69,34 @@
     margin: auto;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 
     .submit-btn {
         @extend %submit-btn;
+        margin: 15px auto;
 
         .submit-icon {
             width: 8px;
             height: 14px;
             margin-left: 18px;
             opacity: 0.6;
+        }
+    }
+
+    .back-btn {
+        @extend %submit-btn;
+        @include roboto(white, 20px, 4);
+        margin: 15px auto;
+        width: 25%;
+        position: relative;
+        &::after {
+            content: "";
+            background: url("../images/previous.png") no-repeat;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 11px;
+            right: 10px;
         }
     }
 }
