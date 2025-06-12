@@ -1,0 +1,136 @@
+
+// --- HELPER FUNCTIONS ---
+
+/**
+ * Extracts the Google Drive file ID from a URL.
+ * @param {string} url The Google Drive URL.
+ * @returns {string|null} The extracted file ID or null if not found.
+ */
+function extractIdFromUrl(url) {
+  const match = url.match(/[-\w]{25,}/); // A robust regex to find Google Drive IDs
+  return match ? match[0] : null;
+}
+
+/**
+ * Formats a JavaScript Date object into DD-MM-YYYY format.
+ * @param {Date} date The date object to format.
+ * @returns {string} The formatted date string.
+ */
+function formatDateForDoc(date) {
+  const padToTwoDigits = (num) => num.toString().padStart(2, '0');
+  const day = padToTwoDigits(date.getDate());
+  const month = padToTwoDigits(date.getMonth() + 1);
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
+
+// --- MAIN FUNCTIONS ---
+
+function onEditTrigger(e) {
+  // This function remains the same as before.
+  const range = e.range;
+  const sheet = range.getSheet();
+  const editedRow = range.getRow();
+  const editedCol = range.getColumn();
+  const editedValue = e.value;
+  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const triggerColIndex = headers.indexOf(TRIGGER_COLUMN_NAME) + 1;
+
+  const isCorrectSheet = sheet.getName() === SHEET_NAME;
+  const isCorrectColumn = editedCol === triggerColIndex;
+  const isCorrectValue = editedValue === TRIGGER_VALUE;
+  const isNotHeader = editedRow > 1;
+
+  if (isCorrectSheet && isCorrectColumn && isCorrectValue && isNotHeader) {
+    console.log(`✅ Conditions met. Calling 'generateDocument' for row ${editedRow}.`);
+    generateDocument(editedRow, headers);
+  }
+}
+
+/**
+ * Generates the document. If a link already exists, it trashes the old file first.
+ * @param {number} rowNum The row number to process.
+ * @param {Array<string>} headers The spreadsheet headers.
+ */
+function generateDocument(rowNum, headers) {
+  try {
+    console.log(`\n--- generateDocument Started for Row: ${rowNum} ---`);
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    
+    // *** LOGIC TO HANDLE EXISTING FILES ***
+    // Delete old file and generate a new one
+    const linkColIndex = headers.indexOf(LINK_COLUMN_NAME) + 1;
+    if (linkColIndex > 0) {
+      const existingUrl = sheet.getRange(rowNum, linkColIndex).getValue();
+      if (existingUrl) {
+        console.log("Found existing document link. Entering update mode.");
+        const existingId = extractIdFromUrl(existingUrl);
+        if (existingId) {
+          try {
+            const oldFile = DriveApp.getFileById(existingId);
+            console.warn(`Moving old file to trash: "${oldFile.getName()}" (ID: ${existingId})`);
+            oldFile.setTrashed(true); // Move to trash instead of permanent delete
+          } catch (e) {
+            console.error(`Could not trash old file (ID: ${existingId}). It might be deleted already. Error: ${e.message}`);
+          }
+        }
+      }
+    }
+
+    const rowData = sheet.getRange(rowNum, 1, 1, headers.length).getValues()[0];
+    const templateFile = DriveApp.getFileById(TEMPLATE_ID);
+    const destinationFolder = DriveApp.getFolderById(FOLDER_ID);
+    
+    // Create Filename
+    const filenameParts = FILENAME_COLUMNS.map(columnName => {
+      const index = headers.indexOf(columnName);
+      if (index === -1) return '';
+      let value = rowData[index];
+      if (value instanceof Date && !isNaN(value)) {
+        return formatDateForDoc(value);
+      }
+      return value;
+    }).filter(Boolean);
+    
+    const uniqueNamePart = filenameParts.length > 0 ? filenameParts.join(FILENAME_SEPARATOR) : `Row-${rowNum}`;
+    const newFileName = `${FILENAME_PREFIX}${FILENAME_SEPARATOR}${uniqueNamePart}`;
+    console.log(`Generated Filename: '${newFileName}'`);
+
+    // Create the new document and replace placeholders (this logic is unchanged)
+    const newFile = templateFile.makeCopy(newFileName, destinationFolder);
+    const doc = DocumentApp.openById(newFile.getId());
+    const body = doc.getBody();
+    console.log(`New document created. ID: ${newFile.getId()}`);
+
+    PLACEHOLDER_COLUMNS.forEach(header => {
+      const placeholder = `{{${header}}}`;
+      const colIndex = headers.indexOf(header);
+      if (colIndex !== -1) {
+        let value = rowData[colIndex];
+        let replacementValue = (value instanceof Date && !isNaN(value)) ? formatDateForDoc(value) : value || "";
+        body.replaceText(placeholder, replacementValue);
+      }
+    });
+    
+    doc.saveAndClose();
+
+    // Update the spreadsheet with the NEW link
+    const docUrl = newFile.getUrl();
+    if (linkColIndex > 0) {
+      sheet.getRange(rowNum, linkColIndex).setValue(docUrl); // This overwrites the old link
+    }
+    
+    const triggerColIndex = headers.indexOf(TRIGGER_COLUMN_NAME) + 1;
+    if (triggerColIndex > 0) {
+      sheet.getRange(rowNum, triggerColIndex).setValue("Document Generated");
+    }
+
+    SpreadsheetApp.flush();
+    console.log("✅ Script finished successfully!");
+
+  } catch (error) {
+    console.error("❌ An error occurred: " + error.toString());
+    console.error("Stack Trace: " + error.stack);
+    // Error handling logic
+  }
+}
